@@ -1,0 +1,14 @@
+encrypt:
+  keyStore:
+    location: classpath:/server.jks
+    password: letmein
+    alias: myconfigkey
+    secret: changeme
+    
+management:
+  security:
+    enabled: false
+    
+    
+#spring.cloud.config.server.encrypt.enabled=false
+

@@ -1,0 +1,49 @@
+START MONGODB SERVER
+====================
+mongo
+
+
+
+CONNECT TO MONGO SHELL
+======================
+
+CREATE ADMIN USER IN AUTHENTICATION DATABASE: admin
+===================================================
+
+use admin
+db.createUser(
+  {
+    user: "sridhar",
+    pwd: "Pundai143$",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+DISCONNECT FROM MONGO SHELL
+===========================
+>exit
+
+
+CONNECT TO MONGODB USING THE CREATED ADMIN USER AND AUTHENTICATING AGAINST THE AUTHENTICATIION DATABASE: admin
+==============================================================================================================
+mongo -u sridhar -p --authenticationDatabase admin
+
+SWITCH TO THE USER'S DB AND CREATE A USER WITH ACCESS TO THE USER DB WITH ROLE RW
+=================================================================================
+use demos
+db.createUser(
+  {
+    user: "surya143",
+    pwd: "Kajol143$",
+    roles: [ { role: "readWrite", db: "demos" }]
+  }
+)
+
+DISCONNECT FROM MONGO SHELL
+===========================
+>exit
+
+
+CONNECT TO MONGODB USING THE NEWLY CREATED USER 
+================================================
+mongo --port 27017 -u "surya143" -p "Kajol143$" --authenticationDatabase "demos"
